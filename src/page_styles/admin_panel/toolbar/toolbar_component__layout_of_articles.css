@@ -1,0 +1,77 @@
+.ComponentBlock {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.ArticleLayoutBlock {
+
+    position: relative;
+
+    display: flex;
+
+    list-style-type: none;
+
+    outline: 1px solid red;
+
+}
+
+.ArticleLayoutBlock li {
+
+    position: relative;
+
+    display: block;
+
+    width: 20vw;
+    height: 20vh;
+
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+}
+
+.ArticleLayoutBlock li:first-child {
+
+    margin-left: 20px;
+
+}
+
+.ArticleCreationBlock {
+
+    background: #fcbad3;
+
+}
+
+.ArticleCreationButton {
+
+
+
+}
+
+.CreationBlock {
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.WarningBlock {
+
+    position: relative;
+
+    background: #a8d8ea;
+
+}
