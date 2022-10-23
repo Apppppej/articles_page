@@ -6,13 +6,19 @@ import {
 
 import '../../../../page_styles/admin_panel/toolbar/article_editor/article_editor.css';
 
+import left_arrow_icon from '../../../../static/icons/arrow_left.png';
+import airplane_icon from '../../../../static/icons/airplane_icon.png';
+
 class Article_Editor extends Component {
 
     constructor( props ) {
         super( props );
 
         this.state = {
-            heading : 'Заголовок'
+            heading : 'Заголовок',
+            popup : false,
+            login : '',
+            password : ''
         };
 
         this.sending_article_data.bind( this );
@@ -21,41 +27,10 @@ class Article_Editor extends Component {
         this.preview__on_drag_over.bind( this );
         this.preview__on_drag_enter.bind( this );
         this.preview__on_drag_leave.bind( this );
-    }
-
-    sending_article_data ( ) {
-
-        let these_articles = {};
-
-        these_articles['heading'] = document.querySelector('.input__header_field').getAttribute('placeholder');
-
-        these_articles['preview'] = document.querySelector('.block__preview_field img').getAttribute('src');
-
-        const article_block = document.querySelector('.block__article_field');
-        const array_of_elements = Array.from( article_block.childNodes );
-        const the_text_of_the_first_element = array_of_elements[0].textContent;
-        
-        const element_to_convert = document.createElement( 'div' );
-        element_to_convert.innerText = the_text_of_the_first_element;
-
-        array_of_elements[0] = element_to_convert;
-
-        let html_markup_array = [];
-
-        array_of_elements.forEach( ( elem ) => {
-            html_markup_array.push( elem.outerHTML );
-        });
-
-        these_articles['articles'] = html_markup_array;
-
-        axios.post()
-            .then( ( res ) => {
-
-            })
-            .catch( ( err ) => {
-                
-            });
-
+        this.click_processing.bind( this );
+        this.calling_a_popup.bind( this );
+        this.changing_the_login.bind( this );
+        this.changing_the_password.bind( this );
     }
 
     changing_the_title ( e ) {
@@ -132,6 +107,75 @@ class Article_Editor extends Component {
         e.stopPropagation( );
     }
 
+    sending_article_data ( ) {
+
+        const heading = this.state.heading
+
+        const preview = document.querySelector('.block__preview_field img').getAttribute('src');
+
+        const article_block = document.querySelector('.block__article_field');
+        const array_of_elements = Array.from( article_block.childNodes );
+        const the_text_of_the_first_element = array_of_elements[0].textContent;
+        
+        const element_to_convert = document.createElement( 'div' );
+        element_to_convert.innerText = the_text_of_the_first_element;
+
+        array_of_elements[0] = element_to_convert;
+
+        let html_markup_array = [];
+
+        array_of_elements.forEach( ( elem ) => {
+            html_markup_array.push( elem.outerHTML );
+        });
+
+        const article = html_markup_array.join('');
+
+        axios.post(`http://127.0.0.1:9000/these_articles?login=${ this.state.login }&password=${ this.state.password }&heading=${ heading }&preview=${ preview }&article=${ article }`)
+        .then( ( res ) => {
+            console.log( res );
+        })
+        .catch( ( err ) => {
+            console.log( err );
+        });
+
+    }
+
+    click_processing( e ) {
+
+        const link_to_the_editor_block = document.querySelector('.block__article_field');
+
+        if ( link_to_the_editor_block.textContent == 'Текст' ) {
+
+            link_to_the_editor_block.innerText = '';
+
+        }
+
+    }
+
+    calling_a_popup( e ) {
+
+        this.setState({
+            popup : true
+        });
+
+    }
+
+    changing_the_login( e ) {
+
+        this.setState({
+            login : e.target.value
+        });
+
+    }
+
+    changing_the_password( e ) {
+
+        this.setState({
+            password : e.target.value
+        });
+
+    }
+
     render ( ) {
 
         return (
@@ -147,16 +191,20 @@ class Article_Editor extends Component {
                         <Link
                             to={`/adminpanel`}
                         >
-                            <h3>Вернуться</h3>
+                            <img
+                                src={ left_arrow_icon }
+                            />
                         </Link>
                     </div>
                     <div
                         className='block__end_button'
                     >
                         <button
-                            onClick={ ( e ) => this.sending_article_data( e ) }
+                            onClick={ ( e ) => this.calling_a_popup( e ) }
                         >
-                            <h3>Завершить</h3>
+                            <img
+                                src={ airplane_icon }
+                            />
                         </button>
                     </div>
                 </div>
@@ -167,6 +215,7 @@ class Article_Editor extends Component {
                         className='input__header_field'
                         type={ 'text' }
                         placeholder={ 'Заголовок' }
+                        onChange={ ( e ) => this.changing_the_title( e ) }
                     />
                     <div
                         className='block__preview_field'
@@ -178,13 +227,45 @@ class Article_Editor extends Component {
                     </div>
                     <div
                         contentEditable={ true }
+                        suppressContentEditableWarning={true}
                         className='block__article_field'
                         onDrop={ ( e ) => this.picture__on_drop( e ) }
                         onDragEnter={ this.picture__on_drag_enter }
                         onDragLeave={ this.picture__on_drag_leave }
                         onDragOver={ ( e ) => this.picture__on_drag_over( e ) }
-                    />
+                        onClick={ this.click_processing }
+                    >
+                        Текст
+                    </div>
                 </form>
+                {
+                    this.state.popup ?
+                    <div
+                        className='popup__authorization_window'
+                    >
+                        <div
+                            className='block__frame_border'
+                        >
+                            <h3>Авторизация</h3>
+                            <input
+                                className='input__login_field'
+                                placeholder='Логин'
+                                onChange={ ( e ) => this.changing_the_login( e ) }
+                            />
+                            <input
+                                className='input__password_field'
+                                placeholder='Пароль'
+                                onChange={ ( e ) => this.changing_the_password( e ) }
+                            />
+                            <button
+                                className='button__send_button'
+                                onClick={ ( e ) => this.sending_article_data( e ) }
+                            >
+                                Отправить
+                            </button>
+                        </div>
+                    </div> : null
+                }
             </main>
         );
 
