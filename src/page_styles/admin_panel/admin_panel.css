@@ -1,3 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url(../../static/Font/Montserrat/Montserrat-Regular.ttf);
+}
+
 .MainUnit {
 
     position: relative;
@@ -10,62 +19,115 @@
     background: #fdfdfd;
 
 }
-.SectionBlock {
+
+.SectionBlock_closed {
 
     position: relative;
 
-    max-width: 300px;
+    max-width: 50px;
 
     width: 100%;
     height: 100vh;
 
-    box-shadow: 0px 0px 6px gray;
-
-    background: #fdfdfd;
+    background: #aa96da;
 
     z-index: 2;
 
 }
 
-.SectionBlock button {
+.SectionBlock_button {
+
+    position: relative;
+
+    height: 50px;
+
+    border: none;
+
+    cursor: pointer;
+    
+    background-color: #aa96da;
+
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+
+    outline: 1px solid red;
+
+}
+
+.SectionBlock_closed_h3 {
+
+    display: none;
+
+}
+
+.clarified_icon {
+
+    animation-name: icon_highlighting;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.dimmed_icon {
+
+    animation-name: blackout_icon;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.SectionBlock_disclosed {
+
+    position: relative;
+
+    display: inline-block;
+
+    height: 100vh;
+
+    background: #aa96da;
+
+    z-index: 2;
+
+}
+
+.SectionBlock_disclosed_button {
 
     position: relative;
 
     display: flex;
 
-    width: 100%;
-    height: 60px;
-
-    color: #f6f6f6;
-
-    background-color: #aa96da;
-
     border: none;
 
     cursor: pointer;
+    
+    background-color: #aa96da;
+
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+
+    max-width: fit-content;
+    max-width: -moz-fit-content;
 
 }
 
-.SectionBlock img {
-
-    width: 20px;
-    height: 20px;
-
-    margin-left: 14%;
-    margin-right: 4%;
-    margin-top: 19px;
-
-}
-
-.SectionBlock h3 {
+.SectionBlock_disclosed_h3 {
 
     position: relative;
 
-    display: block;
+    display: inline;
 
-    font-size: 20px;
+    font-family: 'Montserrat-Regular';
+    font-size: 12pt;
 
-    line-height: 0.9;
+    line-height: 1;
+
+    margin-left: 15px;
 
 }
 
@@ -82,4 +144,40 @@
 
     outline: 1px solid red;
 
+}
+
+@keyframes icon_highlighting {
+    from {
+        opacity: 0.2;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes blackout_icon {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.2;
+    }
+}
+
+@-webkit-keyframes icon_highlighting {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.4;
+    }
+}
+
+@-webkit-keyframes blackout_icon {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
 }
