@@ -7,6 +7,11 @@
     src: url(../../static/Font/Montserrat/Montserrat-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'Raleway-Regular';
+    src: url(../../static/Font/Raleway/Raleway-Regular.ttf);
+}
+
 .MainUnit {
 
     position: relative;
@@ -24,42 +29,191 @@
 
     position: relative;
 
-    max-width: 50px;
+    flex-grow: 0;
+    flex-basis: 50px;
 
-    width: 100%;
     height: 100vh;
 
     background: #aa96da;
 
-    z-index: 2;
-
 }
 
-.SectionBlock_button {
+.general_button_settings {
 
     position: relative;
-
-    height: 50px;
-
-    border: none;
-
-    cursor: pointer;
-    
-    background-color: #aa96da;
 
     padding-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
 
-    outline: 1px solid red;
+    border: none;
+
+    background: rgba(0, 0, 0, 0);
 
 }
 
-.SectionBlock_closed_h3 {
+.h3__button_text {
 
     display: none;
 
+}
+
+.open_side_panel {
+
+    position: relative;
+
+    flex-grow: 0;
+
+    height: 100vh;
+
+    background: #aa96da;
+
+    animation-name: opening_the_sidebar;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.closed_side_panel {
+
+    position: relative;
+    
+    flex-grow: 0;
+
+    height: 100vh;
+
+    background: #aa96da;
+
+    animation-name: closed_side_panel;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.modified_button {
+
+    display: flex;
+
+    text-align: justify;
+
+    animation-name: changing_the_button;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.button_return {
+
+    text-align: justify;
+    
+    animation-name: button_return;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.the_text_that_appears {
+
+    display: inline;
+
+    width: 170px;
+
+    font-size: 0pt;
+
+    animation-name: text_appearance;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.09, .11, .43, .56);
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.disappeared_text {
+
+    display: inline;
+    
+    width: 170px;
+
+    font-size: 0pt;
+
+    animation-name: text_appearance;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.09, .11, .43, .56);
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+@keyframes opening_the_sidebar {
+    from {
+        flex-basis: 50px;
+    }
+    to {
+        flex-basis: 280px;
+    }
+}
+
+@keyframes closed_side_panel {
+    from {
+        flex-basis: 300px;
+    }
+    to {
+        flex-basis: 50px;
+    }
+}
+
+@keyframes changing_the_button {
+    from {
+        width: 50px;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes button_return {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 50px;
+    }
+}
+
+@keyframes text_appearance {
+    0% {
+        display: none;
+        color: #aa96da;
+        padding-left: 0;
+        font-size: 0pt;
+    }
+    90% {
+        display: none;
+        color: #aa96da;
+        padding-left: 0;
+        font-size: 10pt;
+    }
+    100% {
+        display: inline;
+
+        font-family: 'Raleway-Regular';
+        font-size: 10pt;
+
+        line-height: 1.6;
+
+        color: #ffffff;
+
+        padding-left: 15px;
+    }
+}
+
+@keyframes text_disappearing {
+    
 }
 
 .clarified_icon {
@@ -84,8 +238,7 @@
 
     position: relative;
 
-    display: inline-block;
-
+    width: 280px;
     height: 100vh;
 
     background: #aa96da;
@@ -100,6 +253,8 @@
 
     display: flex;
 
+    width: 100%;
+
     border: none;
 
     cursor: pointer;
@@ -111,8 +266,7 @@
     padding-right: 15px;
     padding-bottom: 15px;
 
-    max-width: fit-content;
-    max-width: -moz-fit-content;
+    outline: 1px solid red;
 
 }
 
@@ -120,14 +274,14 @@
 
     position: relative;
 
-    display: inline;
-
     font-family: 'Montserrat-Regular';
-    font-size: 12pt;
+    font-size: 10pt;
 
-    line-height: 1;
+    line-height: 1.6;
 
     margin-left: 15px;
+
+    color: #ffffff;
 
 }
 
@@ -135,14 +289,14 @@
 
     position: relative;
 
+    display: inline-block;
+
     width: 100%;
     height: 100%;
 
     background: #fafafa;
 
     z-index: 1;
-
-    outline: 1px solid red;
 
 }
 

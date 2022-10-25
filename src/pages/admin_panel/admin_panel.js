@@ -26,28 +26,21 @@ class Admin_Panel extends Component {
         this.state = {
             'content_section' : false,
             'analytics_section' : false,
-            'icon_highlighting' : {
-                'icon__content_section' : true,
-                'icon__analytics_section' : true
-            }
         };
 
-        this.refContentBlock = React.createRef( );
+        this.refSidebar = React.createRef( );
 
-        this.refContentButton = React.createRef( );
-        this.refAnalyticsButton = React.createRef( );
+        this.refContentButtons = React.createRef( );
+        this.refAnalyticsButtons = React.createRef( );
 
-        this.refContentIcons = React.createRef( );
-        this.refAnalyticsIcon = React.createRef( );
-
-        this.refTextOfTheContentSection = React.createRef( );
-        this.refTextOfTheAnalyticsSection = React.createRef( );
+        this.ref_content_text = React.createRef( );
+        this.ref_analytics_text = React.createRef( );
 
         this.seconds_counter = null;
 
         this.button_click_processing.bind( this );
-        this.change_section_icons_color.bind( this );
-        this.sidebar_reveal.bind( this );
+        this.opening_the_sidebar.bind( this );
+        this.closing_the_sidebar.bind( this );
     }
 
     button_click_processing( component_name ) {
@@ -58,56 +51,25 @@ class Admin_Panel extends Component {
 
     }
 
-    change_section_icons_color ( param ) {
+    opening_the_sidebar( ) {
 
-        let current_icon_object = this.state.icon_highlighting;
+        this.refSidebar.current.className = 'open_side_panel';
 
-        for ( let key in current_icon_object ) {
+        this.refContentButtons.current.className = 'general_button_settings , modified_button';
+        this.refAnalyticsButtons.current.className = 'general_button_settings , modified_button';
 
-            if ( param != 'highlighting_all' ) {
-
-                if ( key == param ) {
-
-                    current_icon_object[ key ] = true;
-
-                }
-
-                if ( key != param ) {
-
-                    current_icon_object[ key ] = false;
-
-                }
-
-            }
-
-            if ( param == 'highlighting_all' ) {
-
-                current_icon_object[ key ] = true;
-
-            }
-
-        }
-
-        this.setState({
-            'icon_highlighting' : current_icon_object
-        });
+        this.ref_content_text.current.className = 'the_text_that_appears';
+        this.ref_analytics_text.current.className = 'the_text_that_appears';
 
     }
 
-    sidebar_reveal( ) {
+    closing_the_sidebar( ) {
 
-        // this.seconds_counter = setTimeout( ( ) => {
+        this.refSidebar.current.className = 'closed_side_panel';
 
-            this.refContentBlock.current.className = 'SectionBlock_disclosed';
+        this.refContentButtons.current.className = 'general_button_settings , button_return';
+        this.refAnalyticsButtons.current.className = 'general_button_settings , button_return';
 
-            this.refContentButton.current.className = 'SectionBlock_disclosed_button';
-            this.refAnalyticsButton.current.className = 'SectionBlock_disclosed_button';
-
-            this.refTextOfTheContentSection.current.className = 'SectionBlock_disclosed_h3';
-            this.refTextOfTheAnalyticsSection.current.className = 'SectionBlock_disclosed_h3';
-
-        // } , 3000);
-        
     }
 
     render ( ) {
@@ -115,44 +77,37 @@ class Admin_Panel extends Component {
             <div className="MainUnit">
                 <div
                     className='SectionBlock_closed'
-                    ref={ this.refContentBlock }
-                    onMouseEnter={ ( ) => this.sidebar_reveal( ) }
+                    ref={ this.refSidebar }
+                    onMouseEnter={ ( ) => this.opening_the_sidebar( ) }
+                    onMouseLeave={ ( ) => this.closing_the_sidebar( ) }
                 >
-                    <div
-                        className='SectionBlock_button'
-                        ref={ this.refContentButton }
+                    <button
+                        className='general_button_settings'
+                        ref={ this.refContentButtons }
                         onClick={ ( ) => this.button_click_processing('content_section') }
-                        onMouseEnter={ ( ) => this.change_section_icons_color( 'icon__content_section' ) }
-                        onMouseLeave={ ( ) => this.change_section_icons_color( 'highlighting_all' ) }
 
                     >
                         <img
                             src={ Pencil }
-                            className={ this.state.icon_highlighting.icon__content_section ? 'clarified_icon' : 'dimmed_icon' }
-                            ref={ this.refContentIcons }
                         />
                         <h3
-                            className='SectionBlock_closed_h3'
-                            ref={ this.refTextOfTheContentSection }
+                            className='h3__button_text'
+                            ref={ this.ref_content_text }
                         >
                             РАЗДЕЛ КОНТЕНТА
                         </h3>
-                    </div>
+                    </button>
                     <button
-                        className='SectionBlock_button'
-                        ref={ this.refAnalyticsButton }
+                        className='general_button_settings'
+                        ref={ this.refAnalyticsButtons }
                         onClick={ ( ) => this.button_click_processing('analytics_section') }
-                        onMouseEnter={ ( ) => this.change_section_icons_color( 'icon__analytics_section' ) }
-                        onMouseLeave={ ( ) => this.change_section_icons_color( 'highlighting_all' ) }
                     >
                         <img
                             src={ Charts }
-                            className={ this.state.icon_highlighting.icon__content_section ? 'clarified_icon' : 'dimmed_icon' }
-                            ref={ this.refAnalyticsIcon }
                         />
                         <h3
-                            className='SectionBlock_closed_h3'
-                            ref={ this.refTextOfTheAnalyticsSection }
+                            className='h3__button_text'
+                            ref={ this.ref_analytics_text }
                         >
                             РАЗДЕЛ АНАЛИТИКИ
                         </h3>
