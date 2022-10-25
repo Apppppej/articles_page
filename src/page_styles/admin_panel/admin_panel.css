@@ -42,14 +42,21 @@
 
     position: relative;
 
+    display: block;
+
+    width: 100%;
+
     padding-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
     padding-bottom: 15px;
 
     border: none;
 
+    margin-left: auto;
+    margin-right: auto;
+
     background: rgba(0, 0, 0, 0);
+
+    cursor: pointer;
 
 }
 
@@ -70,7 +77,8 @@
     background: #aa96da;
 
     animation-name: opening_the_sidebar;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 
@@ -100,7 +108,7 @@
     text-align: justify;
 
     animation-name: changing_the_button;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
 
@@ -121,12 +129,10 @@
 
     display: inline;
 
-    width: 170px;
-
     font-size: 0pt;
 
     animation-name: text_appearance;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-timing-function: cubic-bezier(.09, .11, .43, .56);
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -135,25 +141,15 @@
 
 .disappeared_text {
 
-    display: inline;
-    
-    width: 170px;
-
-    font-size: 0pt;
-
-    animation-name: text_appearance;
-    animation-duration: 2s;
-    animation-timing-function: cubic-bezier(.09, .11, .43, .56);
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
+    display: none;
 
 }
 
 @keyframes opening_the_sidebar {
-    from {
+    0% {
         flex-basis: 50px;
     }
-    to {
+    100% {
         flex-basis: 280px;
     }
 }
@@ -187,6 +183,7 @@
 
 @keyframes text_appearance {
     0% {
+        width: 0px;
         display: none;
         color: #aa96da;
         padding-left: 0;
@@ -199,6 +196,7 @@
         font-size: 10pt;
     }
     100% {
+        width: 170px;
         display: inline;
 
         font-family: 'Raleway-Regular';
@@ -212,8 +210,16 @@
     }
 }
 
-@keyframes text_disappearing {
-    
+.lightening_the_button {
+
+    opacity: 1;
+
+}
+
+.dimming_the_button {
+
+    opacity: 0.4;
+
 }
 
 .clarified_icon {
