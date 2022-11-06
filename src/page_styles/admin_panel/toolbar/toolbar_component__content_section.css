@@ -1,0 +1,239 @@
+@font-face {
+    font-family: 'Roboto - Regular';
+    src: url(../../../static/font/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto - Light';
+    src: url(../../../static/font/Roboto/Roboto-Light.ttf);
+}
+
+.block__content_section {
+
+    position: relative;
+
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.block__section_name {
+
+    position: relative;
+
+    width: 100%;
+    height: 50px;
+
+    padding-top: 14px;
+    padding-left: 20px;
+
+}
+
+.block__section_name h3 {
+
+    position: relative;
+
+    font-family: 'Roboto - Light';
+    font-size: 20px;
+
+    color: #35383F;
+
+}
+
+.block__band {
+
+    position: relative;
+
+    display: flex;
+
+    margin-top: 1px;
+
+    flex: 1;
+
+    list-style-type: none;
+
+}
+
+.block__creating_an_article {
+
+    position: relative;
+
+    width: 160px;
+    height: 240px;
+
+    margin-left: 10px;
+
+}
+
+.block__centering_field {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.block__creating_an_article a {
+
+    position: absolute;
+
+    display: block;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    margin: auto auto;
+
+    width: 50px;
+    height: 50px;
+
+    background: #35383F;
+
+}
+
+.block__creating_an_article img {
+
+    position: absolute;
+
+    display: block;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin: auto auto auto auto;
+
+}
+
+.ComponentBlock {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    background: #F9F7F7;
+
+}
+
+.ArticleLayoutBlock {
+
+    position: relative;
+
+    display: flex;
+
+    list-style-type: none;
+
+}
+
+.ArticleLayoutBlock li {
+
+    position: relative;
+
+    display: block;
+
+    width: 16vw;
+    height: 20vw;
+
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+}
+
+.ArticleLayoutBlock li:first-child {
+
+    margin-left: 20px;
+
+}
+
+.ArticleCreationBlock {
+
+    position: relative;
+
+    background: #A6D0E4;
+
+    
+
+}
+
+.ArticleCreationButton {
+
+    position: relative;
+    
+    text-align: center;
+
+    text-decoration: none;
+
+}
+
+.CreationBlock {
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.CreationBlock img {
+
+    position: relative;
+
+    width: 58%;
+
+    margin-top: 1.5vw;
+    margin-bottom: 1.4vw;
+
+}
+
+.CreationBlock h3 {
+
+    font-size: 1.18vw;
+    font-family: 'OpenSans-Regular';
+
+    color: #F9F7F7;
+
+}
+
+.WarningBlock {
+
+    position: relative;
+
+    background: #FFAAA5;
+
+    text-align: center;
+
+}
+
+.WarningBlock img {
+
+    position: relative;
+
+    margin-top: 1.5vw;
+    margin-bottom: 0.8vw;
+
+}
+
+.WarningText {
+
+    position: relative;
+
+    font-size: 1vw;
+
+    color: #F9F7F7;
+
+}

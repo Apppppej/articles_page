@@ -31,7 +31,7 @@ app.get('/articles_data' , ( req , res ) => {
 
 });
 
-app.post('/these_articles' , ( require , responce ) => {
+app.post('/creating_an_article' , ( require , responce ) => {
     
     pool.connect( ( error , client , release ) => {
         if ( error ) {

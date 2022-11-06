@@ -6,8 +6,8 @@ import {
 
 import '../../../../page_styles/admin_panel/toolbar/article_editor/article_editor.css';
 
-import left_arrow_icon from '../../../../static/icons/arrow_left.png';
-import airplane_icon from '../../../../static/icons/airplane_icon.png';
+import LeftArrowIcon from '../../../../static/icons/admin_panel__left_arrow_icon.svg';
+import RightArrowIcon from '../../../../static/icons/admin_panel__icon_of_the_next_item.svg';
 
 class Article_Editor extends Component {
 
@@ -178,6 +178,8 @@ class Article_Editor extends Component {
 
     render ( ) {
 
+        console.log( this.state.popup );
+
         return (
             <main
                 className="block__article_editor"
@@ -192,18 +194,18 @@ class Article_Editor extends Component {
                             to={`/adminpanel`}
                         >
                             <img
-                                src={ left_arrow_icon }
+                                src={ LeftArrowIcon }
                             />
                         </Link>
                     </div>
                     <div
-                        className='block__end_button'
+                        className='block__emergence_pop-up'
                     >
                         <button
                             onClick={ ( e ) => this.calling_a_popup( e ) }
                         >
                             <img
-                                src={ airplane_icon }
+                                src={ RightArrowIcon }
                             />
                         </button>
                     </div>
@@ -211,12 +213,6 @@ class Article_Editor extends Component {
                 <form
                     className='form__editor'
                 >
-                    <input
-                        className='input__header_field'
-                        type={ 'text' }
-                        placeholder={ 'Заголовок' }
-                        onChange={ ( e ) => this.changing_the_title( e ) }
-                    />
                     <div
                         className='block__preview_field'
                         onDrop={ ( e ) =>  this.preview__on_drop( e ) }
@@ -225,10 +221,16 @@ class Article_Editor extends Component {
                         onDragOver={ ( e ) => this.preview__on_drag_over( e ) }
                     >
                     </div>
+                    <input
+                        className='input__header_field'
+                        type={ 'text' }
+                        placeholder={ 'Заголовок' }
+                        onChange={ ( e ) => this.changing_the_title( e ) }
+                    />
                     <div
+                        className='block__article_field'
                         contentEditable={ true }
                         suppressContentEditableWarning={true}
-                        className='block__article_field'
                         onDrop={ ( e ) => this.picture__on_drop( e ) }
                         onDragEnter={ this.picture__on_drag_enter }
                         onDragLeave={ this.picture__on_drag_leave }
@@ -241,27 +243,23 @@ class Article_Editor extends Component {
                 {
                     this.state.popup ?
                     <div
-                        className='popup__authorization_window'
+                        className='block__popup'
                     >
                         <div
-                            className='block__frame_border'
+                            className='block__authentication'
                         >
-                            <h3>Авторизация</h3>
                             <input
-                                className='input__login_field'
-                                placeholder='Логин'
+                                className='input__verification_code'
+                                placeholder='Введите проверочный код'
                                 onChange={ ( e ) => this.changing_the_login( e ) }
-                            />
-                            <input
-                                className='input__password_field'
-                                placeholder='Пароль'
-                                onChange={ ( e ) => this.changing_the_password( e ) }
                             />
                             <button
                                 className='button__send_button'
                                 onClick={ ( e ) => this.sending_article_data( e ) }
                             >
-                                Отправить
+                                <img
+                                    src={ RightArrowIcon }
+                                />
                             </button>
                         </div>
                     </div> : null

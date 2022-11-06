@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Montserrat-Regular';
     src: url(../../static/Font/Montserrat/Montserrat-Regular.ttf);
 }
@@ -10,7 +10,7 @@
 @font-face {
     font-family: 'Raleway-Regular';
     src: url(../../static/Font/Raleway/Raleway-Regular.ttf);
-}
+} */
 
 .MainUnit {
 
@@ -25,16 +25,39 @@
 
 }
 
-.SectionBlock_closed {
+.block__side_panel {
 
     position: relative;
 
-    flex-grow: 0;
-    flex-basis: 50px;
-
+    width: 50px;
     height: 100vh;
 
-    background: #aa96da;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.block__return_button {
+
+    position: relative;
+
+    width: 100%;
+    height: 50px;
+
+    background: #35383F;
+
+}
+
+.block__navigation_buttons {
+
+    position: relative;
+
+    width: 100%;
+    flex: 1;
+
+    margin-top: 1px;
+
+    background: #35383F;
 
 }
 
@@ -60,168 +83,6 @@
 
 }
 
-.h3__button_text {
-
-    display: none;
-
-}
-
-.open_side_panel {
-
-    position: relative;
-
-    flex-grow: 0;
-
-    height: 100vh;
-
-    background: #aa96da;
-
-    animation-name: opening_the_sidebar;
-    animation-duration: 1s;
-    animation-timing-function: ease-in;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-
-}
-
-.closed_side_panel {
-
-    position: relative;
-    
-    flex-grow: 0;
-
-    height: 100vh;
-
-    background: #aa96da;
-
-    animation-name: closed_side_panel;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-
-}
-
-.modified_button {
-
-    display: flex;
-
-    text-align: justify;
-
-    animation-name: changing_the_button;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-
-}
-
-.button_return {
-
-    text-align: justify;
-    
-    animation-name: button_return;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-
-}
-
-.the_text_that_appears {
-
-    display: inline;
-
-    font-size: 0pt;
-
-    animation-name: text_appearance;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(.09, .11, .43, .56);
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-
-}
-
-.disappeared_text {
-
-    display: none;
-
-}
-
-@keyframes opening_the_sidebar {
-    0% {
-        flex-basis: 50px;
-    }
-    100% {
-        flex-basis: 280px;
-    }
-}
-
-@keyframes closed_side_panel {
-    from {
-        flex-basis: 300px;
-    }
-    to {
-        flex-basis: 50px;
-    }
-}
-
-@keyframes changing_the_button {
-    from {
-        width: 50px;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes button_return {
-    from {
-        width: 100%;
-    }
-    to {
-        width: 50px;
-    }
-}
-
-@keyframes text_appearance {
-    0% {
-        width: 0px;
-        display: none;
-        color: #aa96da;
-        padding-left: 0;
-        font-size: 0pt;
-    }
-    90% {
-        display: none;
-        color: #aa96da;
-        padding-left: 0;
-        font-size: 10pt;
-    }
-    100% {
-        width: 170px;
-        display: inline;
-
-        font-family: 'Raleway-Regular';
-        font-size: 10pt;
-
-        line-height: 1.6;
-
-        color: #ffffff;
-
-        padding-left: 15px;
-    }
-}
-
-.lightening_the_button {
-
-    opacity: 1;
-
-}
-
-.dimming_the_button {
-
-    opacity: 0.4;
-
-}
-
 .clarified_icon {
 
     animation-name: icon_highlighting;
@@ -237,57 +98,6 @@
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
-
-}
-
-.SectionBlock_disclosed {
-
-    position: relative;
-
-    width: 280px;
-    height: 100vh;
-
-    background: #aa96da;
-
-    z-index: 2;
-
-}
-
-.SectionBlock_disclosed_button {
-
-    position: relative;
-
-    display: flex;
-
-    width: 100%;
-
-    border: none;
-
-    cursor: pointer;
-    
-    background-color: #aa96da;
-
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-
-    outline: 1px solid red;
-
-}
-
-.SectionBlock_disclosed_h3 {
-
-    position: relative;
-
-    font-family: 'Montserrat-Regular';
-    font-size: 10pt;
-
-    line-height: 1.6;
-
-    margin-left: 15px;
-
-    color: #ffffff;
 
 }
 
